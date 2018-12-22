@@ -21,10 +21,12 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
+import static cn.peterzhen.demo.App.BASE_URL;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    public static String BASE_URL = "http://192.168.11.109:7001";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +51,10 @@ public class MainActivity extends AppCompatActivity {
                 String password = etPassword.getText().toString();
 
                 if (!TextUtils.isEmpty(address) && isValidUrl(address)) {
-                    BASE_URL = address;
+                    App.BASE_URL = address;
+                    Api.init();
                     if ( !TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
-                        Api.commonService().login(username, password, "1")
+                        Api.getInstance().getService().login(username, password, "1")
                                 .subscribe(new Subscriber<UserInfo>() {
                                     @Override
                                     public void onSubscribe(Subscription s) {
@@ -89,7 +92,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public Interceptor[] configInterceptors() {
                 //配置拦截器
-                return new Interceptor[0];
+                Interceptor[] interceptors = new Interceptor[1];
+                interceptors[0] = new RequestInterceptor();
+                return interceptors;
             }
 
             @Override

@@ -5,6 +5,9 @@ import com.zyy.soap.annonations.WebParam;
 import com.zyy.soap.annonations.WebService;
 
 import io.reactivex.Flowable;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
 
 /**
  * 当前类注释:
@@ -13,6 +16,10 @@ import io.reactivex.Flowable;
  */
 @WebService(targetNamespace = "http://dao.ws.cbsw.cn/", targetEndPoint = "cxf/cbswWebService")
 public interface ICommonService {
+
+    @Headers("SOAPAction:login")//请求的Action，类似于方法名
+    @POST("cxf/cbswWebService")//请求到地址
+    Flowable<UserInfo> login()
 
     /**
      *
@@ -44,6 +51,5 @@ public interface ICommonService {
      */
     Flowable<String> getNewVersion();
 
-    /**=======================================道路运输========================================================*/
 
 }

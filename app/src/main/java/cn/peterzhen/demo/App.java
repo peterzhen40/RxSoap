@@ -12,10 +12,12 @@ import android.content.Context;
 public class App extends Application {
 
     public static Context sContext;
+    public static String BASE_URL = "http://192.168.11.109:7001";
 
     @Override
     public void onCreate() {
         super.onCreate();
         sContext = getApplicationContext();
+        Api.init();
     }
 }

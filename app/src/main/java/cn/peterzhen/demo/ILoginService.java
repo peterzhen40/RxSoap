@@ -1,10 +1,6 @@
 package cn.peterzhen.demo;
 
 
-import com.zyy.soap.annonations.WebParam;
-import com.zyy.soap.annonations.WebService;
-
-import io.reactivex.Flowable;
 
 /**
  * 广州民爆
@@ -15,26 +11,26 @@ import io.reactivex.Flowable;
  *
  * @author Administrator
  */
-@WebService(targetNamespace = "http://dao.ws.cbsw.cn/",
-        targetEndPoint = "cxf/loginService")
+//@WebService(targetNamespace = "http://dao.ws.cbsw.cn/",
+//        targetEndPoint = "cxf/loginService")
 public interface ILoginService {
-    /**
-     * @param username 用户名称
-     * @param password 密码
-     * @param shebei   设备 1为手机app,2为平板
-     * @return {"compNo":"唯一sn","compName":"单位名","compId":"单位id","compBm":"单位区域编码","userMobile":"用户电话","userSex":"男"
-     * "userRealName":"用户实名","userId":"用户ID","compNature":"单位类型,可以用方法判断是否公安","userType":"用户类型,1系统管理员2单位管理员3普通用户4爆破项目人员"}或err-xxxx
-     */
-    Flowable<UserInfo> login(@WebParam(name = "username") String username,
-                             @WebParam(name = "password") String password,
-                             @WebParam(name = "shebei") String shebei);
-
-    /**
-     * 退出登录
-     *
-     * @param username 用户名
-     * @param shebei   设备表示码:1为手机app,2为平板,3苹果
-     * @return "ok" 或 "err-"
-     */
-    String logout(@WebParam(name = "username") String username, @WebParam(name = "shebei") String shebei);
+//    /**
+//     * @param username 用户名称
+//     * @param password 密码
+//     * @param shebei   设备 1为手机app,2为平板
+//     * @return {"compNo":"唯一sn","compName":"单位名","compId":"单位id","compBm":"单位区域编码","userMobile":"用户电话","userSex":"男"
+//     * "userRealName":"用户实名","userId":"用户ID","compNature":"单位类型,可以用方法判断是否公安","userType":"用户类型,1系统管理员2单位管理员3普通用户4爆破项目人员"}或err-xxxx
+//     */
+//    Flowable<UserInfo> login(@WebParam(name = "username") String username,
+//                             @WebParam(name = "password") String password,
+//                             @WebParam(name = "shebei") String shebei);
+//
+//    /**
+//     * 退出登录
+//     *
+//     * @param username 用户名
+//     * @param shebei   设备表示码:1为手机app,2为平板,3苹果
+//     * @return "ok" 或 "err-"
+//     */
+//    String logout(@WebParam(name = "username") String username, @WebParam(name = "shebei") String shebei);
 }

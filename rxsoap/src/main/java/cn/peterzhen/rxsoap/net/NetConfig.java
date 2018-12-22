@@ -2,6 +2,9 @@ package cn.peterzhen.rxsoap.net;
 
 import android.text.TextUtils;
 
+import org.simpleframework.xml.convert.AnnotationStrategy;
+import org.simpleframework.xml.core.Persister;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -12,6 +15,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 /**
  * Created by wanglei on 2016/12/24.
@@ -84,6 +88,7 @@ public class NetConfig {
                 .baseUrl(baseUrl)
                 .client(getClient(baseUrl, provider))
                 .addConverterFactory(new NullOnEmptyConverterFactory())
+                .addConverterFactory(SimpleXmlConverterFactory.create(new Persister(new AnnotationStrategy())))
                 .addConverterFactory(GsonConverterFactory.create());
         if (useRx) {
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
